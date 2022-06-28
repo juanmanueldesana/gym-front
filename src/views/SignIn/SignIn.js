@@ -82,6 +82,9 @@ const SignIn = () => {
         <button type="submit" className="form-field form-btn">
           Log in
         </button>
+        <div className="mt-4">
+          <Link to="/signup" style={{textDecoration: "none"}}>¿No tiene una cuenta? Regístrese</Link>
+        </div>
       </form>
     </div>
   );
