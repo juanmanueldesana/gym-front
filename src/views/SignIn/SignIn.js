@@ -4,20 +4,34 @@ import { toast } from "react-toastify";
 import { httpPost } from "../../components/utils/httpFunctions";
 import validator from "validator";
 import { Alert } from "react-bootstrap";
+import axios from "axios";
 
 const SignIn = () => {
-  const [dni, setDni] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState("");
   const navigate = useNavigate();
+  
+  const login=(e)=>{
+    e.preventDefault();
+    axios.post("https:/gym-austral-tp.herokuapp.com/auth/login/", {username,password}).then((res)=>{
+      localStorage.setItem("token", res.data.access);
+      navigate("/home");
+    })
+    .catch(() => {
+      // eslint-disable-next-line no-unused-expressions
+      setErrors("DNI o contraseña incorrecta");
+    });
+  }
+    
   const logIn = (e) => {
     e.preventDefault();
 
     const errors = {};
     setErrors(errors);
 
-    if (!validator.isNumeric(dni) || dni.length !== 8) {
-      errors.dni = "El DNI es incorrecto";
+    if (!validator.isNumeric(username) || username.length !== 8) {
+      errors.username = "El username es incorrecto";
     }
 
     if (!validator.isLength(password, { min: 6, max: undefined })) {
@@ -33,7 +47,7 @@ const SignIn = () => {
       return;
     }
 
-    httpPost("api/auth/", { dni, password })
+    httpPost("api/auth/", { username, password })
       .then((res) => {
         localStorage.setItem("token", res.data.response.jwt);
         toast.success("Sesión iniciada con éxito!", {
@@ -44,17 +58,17 @@ const SignIn = () => {
       })
       .catch(() => {
         // eslint-disable-next-line no-unused-expressions
-        setErrors("DNI o contraseña incorrecta");
+        setErrors("username o contraseña incorrecta");
       });
   };
   return (
     <div className="form-container log">
-      <form className="register-form" onSubmit={logIn}>
+      <form className="register-form" onSubmit={login}>
         <h3 className="form-h3">Iniciar sesión</h3>
         {/* {errors && <Alert variant="danger">{errors}</Alert>} */}
         <input
-          onChange={(e) => setDni(e.target.value)}
-          value={dni}
+          onChange={(e) => setUsername(e.target.value)}
+          value={username}
           id="email"
           className="form-field"
           type="text"

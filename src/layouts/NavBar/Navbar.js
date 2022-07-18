@@ -31,7 +31,7 @@ class Navbar extends Component {
                         )
                     })}
                 </ul>
-                {isLoggedIn != null ?<Button><a style={{ textDecoration: "none", color: "black" }} href="/Perfil">PERFIL</a></Button> : <Button><a style={{ textDecoration: "none", color: "black" }} href="/signin">LOGIN</a></Button>}
+                {(isLoggedIn != null ?<Button><a style={{ textDecoration: "none", color: "black" }} href="/profile">PERFIL</a></Button> : <><Button><a style={{ textDecoration: "none", color: "black" }} href="/signin">LOGIN</a></Button><div style={{ paddingRight: "0.5vw" }}></div><Button><a style={{ textDecoration: "none", color: "black" }} href="/signup">REGISTRATE</a></Button></>)}
             </nav>
         )
     }
