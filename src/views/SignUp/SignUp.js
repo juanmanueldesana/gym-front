@@ -22,7 +22,7 @@ const SignUp = () => {
         console.log("Inicio")
         e.preventDefault();
         validateInfo(profile) === true
-            ? axios.post("https:/gym-austral-tp.herokuapp.com/auth/signup/", {
+            ? axios.post("https://gym-austral-tp.herokuapp.com/api/auth/signup/", {
                 username: profile.username,
                 password: profile.password,
                 first_name: profile.first_name,
@@ -30,7 +30,7 @@ const SignUp = () => {
                 email: profile.email,
               }).then(() => {
                 setMessage("Account was created successfully");
-                axios.post("https:/gym-austral-tp.herokuapp.com/auth/login/", { username: profile.username, password: profile.password }).then(
+                axios.post("https://gym-austral-tp.herokuapp.com/api/auth/login/", { username: profile.username, password: profile.password }).then(
                   (res) => {
                     console.log(res.data);
                     localStorage.setItem("token", res.data.access);
