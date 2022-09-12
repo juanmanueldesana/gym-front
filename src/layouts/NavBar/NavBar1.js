@@ -10,7 +10,7 @@ const NavBar1 = () => {
 
   return (
     <nav className="NavbarItems">
-                <a style={{ textDecoration: "none" }} href="/"><h1 className="navbar-logo">MUSCULITO</h1></a>
+                <a style={{ textDecoration: "none" }} href="/"><h1 className="navbar-logo">ARES</h1></a>
                 <ul className={clicked ? 'nav-menu active' : 'nav-menu'}>
                     <li>
                         <a className='nav-links' href='/'>

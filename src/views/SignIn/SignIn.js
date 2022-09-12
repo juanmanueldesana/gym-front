@@ -21,7 +21,6 @@ const SignIn = () => {
       window.location.reload();
     })
     .catch(() => {
-      // eslint-disable-next-line no-unused-expressions
       setErrors("DNI o contraseña incorrecta");
     });
   }
@@ -67,7 +66,7 @@ const SignIn = () => {
     <div className="form-container log">
       <form className="register-form" onSubmit={login}>
         <h3 className="form-h3">Iniciar sesión</h3>
-        {/* {errors && <Alert variant="danger">{errors}</Alert>} */}
+        {errors && <Alert variant="danger">{errors}</Alert>} 
         <input
           onChange={(e) => setUsername(e.target.value)}
           value={username}
