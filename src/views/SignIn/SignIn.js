@@ -14,9 +14,10 @@ const SignIn = () => {
   
   const login=(e)=>{
     e.preventDefault();
-    axios.post("https:/gym-austral-tp.herokuapp.com/auth/login/", {username,password}).then((res)=>{
+    axios.post("https:/gym-austral-tp.herokuapp.com/api/auth/login/", {username,password}).then((res)=>{
       localStorage.setItem("token", res.data.access);
-      navigate("/home");
+      navigate("/");
+      window.location.reload();
     })
     .catch(() => {
       // eslint-disable-next-line no-unused-expressions

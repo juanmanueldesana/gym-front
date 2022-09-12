@@ -8,18 +8,18 @@ import { useNavigate } from 'react-router-dom';
 const Profile = () => {
   const navigate = useNavigate();
   const [profile, setProfile] = useState({});
-  setTimeout(useEffect(()=>{
-    httpGet("auth/me/").then((res)=>{
+  useEffect(()=>{
+    httpGet("api/auth/me/").then((res)=>{
       setProfile(res.data);
-      console.log(profile);
-      console.log(res);
+      console.log(res.data);
     })
-  },[]),1000);
-  console.log(profile);
+  },[]);
+ 
 
   const logOut = () => {
     localStorage.clear();
     navigate("/");
+    window.location.reload();
   };
 
   return (

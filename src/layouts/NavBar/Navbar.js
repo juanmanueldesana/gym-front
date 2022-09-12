@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { useEffect } from 'react';
 import { MenuItems } from "./MenuItems"
 import { Button } from "../Button"
 import './Navbar.css'
@@ -7,8 +8,6 @@ const isLoggedIn = localStorage.getItem('token')
 
 class Navbar extends Component {
     state = { clicked: false }
-
-    
     handleClick = () => {
         this.setState({ clicked: !this.state.clicked })
     }

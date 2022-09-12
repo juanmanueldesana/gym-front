@@ -10,16 +10,18 @@ import {
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Container } from "react-bootstrap";
 import Navbar from "./layouts/NavBar/Navbar";
+import NavBar1 from "./layouts/NavBar/NavBar1";
 import Landing from "./views/Landing/Landing";
 import WapButton from "./components/WapButton/WapButton";
 import Separador from "./components/Separador/Separador";
 import Footer from "./components/Footer/Footer";
+import Clases from "./views/Clases/Clases";
 
 function AppWrapper() {
   return (
     <div>
       <div>
-        <Navbar></Navbar>
+        <NavBar1/>
       </div>
       <Container>
         <Routes>
@@ -28,6 +30,7 @@ function AppWrapper() {
           <Route path="/signup" element={<SignUp />} />
           <Route path="/signin" element={<SignIn />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/clases" element={<Clases />} />
         </Routes>
       </Container>
       <WapButton />
