@@ -10,7 +10,7 @@ const Profile = () => {
   const navigate = useNavigate();
   const [profile, setProfile] = useState({});
   useEffect(() => {
-    httpGet("api/auth/me/").then((res) => {
+    httpGet("https://gym-austral-tp.herokuapp.com/api/auth/me/").then((res) => {
       setProfile(res.data);
       console.log(res.data);
     });
