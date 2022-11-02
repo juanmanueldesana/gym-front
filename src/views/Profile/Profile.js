@@ -10,7 +10,7 @@ const Profile = () => {
   const navigate = useNavigate();
   const [profile, setProfile] = useState({});
   useEffect(() => {
-    httpGet("https://gym-austral-tp.herokuapp.com/api/auth/me/").then((res) => {
+    httpGet("api/auth/me/").then((res) => {
       setProfile(res.data);
       console.log(res.data);
     });
@@ -45,7 +45,7 @@ const Profile = () => {
         </h1>
       ) : null}
       <h1 className="h1-profile">
-        <a style={{ textDecoration: "none", color: "red" }} href="/">
+        <a style={{ textDecoration: "none", color: "red" }} href="/"  onClick={logOut}>
           Cerrar sesion
         </a>
       </h1>
