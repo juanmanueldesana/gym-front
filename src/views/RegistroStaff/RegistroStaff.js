@@ -19,24 +19,24 @@ const RegistroStaff = () => {
       const navigate = useNavigate();
 
       const signUp = (e) => {
-        console.log("Inicio")
         e.preventDefault();
-        validateInfo(profile) === true
-            ? axios.post("https://gym-austral-tp.herokuapp.com/api/auth/staff-signup/", {
+          axios.post("https://gym-austral-tp.herokuapp.com/api/auth/staff-signup/", {
                 username: profile.username,
                 password: profile.password,
                 first_name: profile.first_name,
                 last_name: profile.last_name,
                 email: profile.email,
                 is_staff: true
-              }).then(() => {
+              },
+              {
+                headers: {
+                  Authorization: `Bearer ${localStorage.getItem("token")}`,
+                },
+              }
+              ).then(() => {
                 alert("Personal de staff creado con exito");
                 navigate("/profile");
               })
-          : setErrors(validateInfo(profile)).then(()=>{
-            console.log("Algo salio mal");
-            console.log(profile);
-          });
         };
 
       const handleChange = (e) => {
