@@ -10,7 +10,11 @@ const Profile = () => {
   const navigate = useNavigate();
   const [profile, setProfile] = useState({});
   useEffect(() => {
-    axios.get("https://gym-austral-tp.herokuapp.com/api/auth/me/").then((res) => {
+    axios.get("https://gym-austral-tp.herokuapp.com/api/auth/me/", {
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem("token"),
+      },
+    }).then((res) => {
       setProfile(res.data);
       console.log(res.data);
     });
