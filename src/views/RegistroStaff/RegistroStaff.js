@@ -37,6 +37,11 @@ const RegistroStaff = () => {
                 alert("Personal de staff creado con exito");
                 navigate("/profile");
               })
+              .catch((error) => {
+                alert("No se pudo crear el personal de staff, compruebe que los datos ingresados sean correctos.");
+                console.log(error);
+              }
+              );
         };
 
       const handleChange = (e) => {
