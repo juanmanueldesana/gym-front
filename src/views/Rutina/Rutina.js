@@ -41,30 +41,38 @@ const Rutina = () => {
         </a>
       </h1>
 
-      <form className="container-profile">
-        <div className="form-group">
-          <div className="input-profile">
-            <Row>
-              <Col>
-                <div className="w-full py-5 ">
-                  <Button style={{ backgroundColor: "#FF5300" }} onClick={() =>{
-                    navigate("/grupos-musculares/")
-                  }} size="md">
-                    Grupos Musculares
-                  </Button>
-                </div>
-              </Col>
-              <Col>
-                <div className="w-full py-5 ">
+      {profile.is_staff ? (
+        <form className="container-profile">
+          <div className="form-group">
+            <div className="input-profile">
+              <Row>
+                <Col>
+                  <div className="w-full py-5 ">
+                    <Button
+                      style={{ backgroundColor: "#FF5300" }}
+                      onClick={() => {
+                        navigate("/grupos-musculares/");
+                      }}
+                      size="md"
+                    >
+                      Grupos Musculares
+                    </Button>
+                  </div>
+                </Col>
+                <Col>
+                  <div className="w-full py-5 ">
                     <Button style={{ backgroundColor: "#FF5300" }} size="md">
                       Ejercicios
                     </Button>
-                </div>
-              </Col>
-            </Row>
+                  </div>
+                </Col>
+              </Row>
+            </div>
           </div>
-        </div>
-      </form>
+        </form>
+      ) : (
+        <div></div>
+      )}
     </div>
   );
 };
