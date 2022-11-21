@@ -16,6 +16,9 @@ import Separador from "./components/Separador/Separador";
 import Footer from "./components/Footer/Footer";
 import Clases from "./views/Clases/Clases";
 import ProtectedRoutes from "./helpers/ProtectedRoutes";
+import Rutina from "./views/Rutina/Rutina";
+import RegistroStaff from "./views/RegistroStaff/RegistroStaff";
+import GruposMusculares from "./views/GruposMusculares/GruposMusculares";
 
 function AppWrapper() {
   return (
@@ -32,6 +35,9 @@ function AppWrapper() {
           <Route path="/clases" element={<Clases />} />
           <Route element={<ProtectedRoutes />}>
               <Route path="/profile/" element={<Profile />} />
+              <Route path="/rutina/" element={<Rutina />} />
+              <Route path="/registro-staff/" element={<RegistroStaff />} />
+              <Route path="/grupos-musculares/" element={<GruposMusculares />} />
             </Route>
         </Routes>
       </Container>

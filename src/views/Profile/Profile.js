@@ -25,12 +25,10 @@ const Profile = () => {
   return (
     <div>
       <h1 className="h1-profile">
-        <a style={{ textDecoration: "none", color: "black" }} href="/Perfil">
           Perfil
-        </a>
       </h1>
       <h1 className="h1-profile">
-        <a style={{ textDecoration: "none", color: "black" }} href="/Rutina">
+        <a style={{ textDecoration: "none", color: "black" }} href="/rutina">
           Rutina
         </a>
       </h1>
@@ -38,14 +36,18 @@ const Profile = () => {
         <h1 className="h1-profile">
           <a
             style={{ textDecoration: "none", color: "black" }}
-            href="/Registro"
+            href="/registro-staff"
           >
-            Crear usuario
+            Registrar personal de staff
           </a>
         </h1>
       ) : null}
       <h1 className="h1-profile">
-        <a style={{ textDecoration: "none", color: "red" }} href="/"  onClick={logOut}>
+        <a
+          style={{ textDecoration: "none", color: "red" }}
+          href="/"
+          onClick={logOut}
+        >
           Cerrar sesion
         </a>
       </h1>
@@ -61,6 +63,7 @@ const Profile = () => {
                 <span className="input-title">Nombre</span>
                 <br></br>
                 <input
+                  disabled
                   type="text"
                   className="w-full pb-1 pl-1 bg-transparent focus:outline-none focus:shadow-none"
                   name="nombre"
@@ -79,6 +82,7 @@ const Profile = () => {
                 <span className="input-title">Apellido</span>
                 <br></br>
                 <input
+                  disabled
                   type="text"
                   className="w-full pb-1 pl-1 bg-transparent focus:outline-none focus:shadow-none"
                   name="apellidoPaterno"
@@ -117,6 +121,7 @@ const Profile = () => {
                 <span className="input-title">Correo electronico</span>
                 <br></br>
                 <input
+                  disabled
                   type="text"
                   className="w-full pb-1 pl-1 bg-transparent focus:outline-none focus:shadow-none"
                   name="mail"
@@ -126,11 +131,6 @@ const Profile = () => {
             </div>
           </div>
           <div className="w-full mb-10 text-center md:w-2/5"></div>
-          <div className="w-full mb-10 text-center md:w-2/5">
-            <button type="submit" className="orange-pill-button">
-              Guardar
-            </button>
-          </div>
         </div>
       </form>
     </div>
