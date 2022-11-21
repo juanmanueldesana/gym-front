@@ -30,15 +30,8 @@ const RegistroStaff = () => {
                 email: profile.email,
                 is_staff: true
               }).then(() => {
-                setMessage("Personal de staff registrado con éxito");
-                axios.post("https://gym-austral-tp.herokuapp.com/api/auth/login/", { username: profile.username, password: profile.password }).then(
-                  (res) => {
-                    console.log(res.data);
-                    localStorage.setItem("token", res.data.access);
-                    navigate("/home");
-                    window.location.reload();
-                  }
-                );
+                alert("Personal de staff creado con exito");
+                navigate("/profile");
               })
           : setErrors(validateInfo(profile)).then(()=>{
             console.log("Algo salio mal");
