@@ -21,8 +21,7 @@ const RegistroStaff = () => {
       const signUp = (e) => {
         console.log("Inicio")
         e.preventDefault();
-        validateInfo(profile) === true
-            ? axios.post("https://gym-austral-tp.herokuapp.com/api/auth/staff-signup/", {
+        axios.post("https://gym-austral-tp.herokuapp.com/api/auth/staff-signup/", {
                 username: profile.username,
                 password: profile.password,
                 first_name: profile.first_name,
@@ -30,20 +29,9 @@ const RegistroStaff = () => {
                 email: profile.email,
                 is_staff: true
               }).then(() => {
-                setMessage("Personal de staff registrado con éxito");
-                axios.post("https://gym-austral-tp.herokuapp.com/api/auth/login/", { username: profile.username, password: profile.password }).then(
-                  (res) => {
-                    console.log(res.data);
-                    localStorage.setItem("token", res.data.access);
-                    navigate("/home");
-                    window.location.reload();
-                  }
-                );
+                alert("Personal de staff registrado con éxito");
+                navigate("/profile");
               })
-          : setErrors(validateInfo(profile)).then(()=>{
-            console.log("Algo salio mal");
-            console.log(profile);
-          });
         };
 
       const handleChange = (e) => {
