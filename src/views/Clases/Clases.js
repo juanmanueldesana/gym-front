@@ -5,7 +5,7 @@ const Clases = () => {
 
     const[info,setInfo]=useState({})
 
-    useEffect( axios.get('https:/gym-austral-tp.herokuapp.com/api/routine_day/').then(response => {
+    useEffect( axios.get('https:/gym-austral-back.onrender.com/api/routine_day/').then(response => {
         setInfo(response.data)}
        , console.log(info))
         ,[])

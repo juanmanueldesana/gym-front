@@ -72,6 +72,19 @@ const Rutina = () => {
                     </Button>
                   </div>
                 </Col>
+                <Col>
+                  <div className="w-full py-5 ">
+                  <Button
+                      style={{ backgroundColor: "#FF5300" }}
+                      onClick={() => {
+                        navigate("/creacion-rutina/");
+                      }}
+                      size="md"
+                    >
+                      Rutinas
+                    </Button>
+                  </div>
+                </Col>
               </Row>
             </div>
           </div>

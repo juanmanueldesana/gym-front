@@ -20,7 +20,7 @@ const RegistroStaff = () => {
 
       const signUp = (e) => {
         e.preventDefault();
-          axios.post("https://gym-austral-tp.herokuapp.com/api/auth/staff-signup/", {
+          axios.post("https://gym-austral-back.onrender.com/api/auth/staff-signup/", {
                 username: profile.username,
                 password: profile.password,
                 first_name: profile.first_name,

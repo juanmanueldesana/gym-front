@@ -20,6 +20,7 @@ import Rutina from "./views/Rutina/Rutina";
 import RegistroStaff from "./views/RegistroStaff/RegistroStaff";
 import GruposMusculares from "./views/GruposMusculares/GruposMusculares";
 import Ejercicios from "./views/Ejercicios/Ejercicios";
+import CreacionRutina from "./views/CreacionRutina/CreacionRutina"
 
 function AppWrapper() {
   return (
@@ -40,6 +41,7 @@ function AppWrapper() {
               <Route path="/registro-staff/" element={<RegistroStaff />} />
               <Route path="/grupos-musculares/" element={<GruposMusculares />} />
               <Route path="/ejercicios/" element={<Ejercicios />} />
+              <Route path="/creacion-rutina/" element={<CreacionRutina />} />
             </Route>
         </Routes>
       </Container>

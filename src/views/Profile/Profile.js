@@ -10,13 +10,14 @@ const Profile = () => {
   const navigate = useNavigate();
   const [profile, setProfile] = useState({});
   useEffect(() => {
-    axios.get("https://gym-austral-tp.herokuapp.com/api/auth/me/", {
+    axios.get("https://gym-austral-back.onrender.com/api/auth/me/", {
       headers: {
         Authorization: "Bearer " + localStorage.getItem("token"),
       },
     }).then((res) => {
       setProfile(res.data);
       console.log(res.data);
+      console.log(profile);
     });
   }, []);
 
@@ -34,6 +35,11 @@ const Profile = () => {
       <h1 className="h1-profile">
         <a style={{ textDecoration: "none", color: "black" }} href="/rutina">
           Rutina
+        </a>
+      </h1>
+      <h1 className="h1-profile">
+        <a style={{ textDecoration: "none", color: "black" }} href="/ejercicios">
+          Ejercicios
         </a>
       </h1>
       {profile.is_staff == true ? (

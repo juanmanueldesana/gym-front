@@ -1,6 +1,6 @@
 const axios = require("axios");
 
-const baseUrl = "https:/gym-austral-tp.herokuapp.com/";
+const baseUrl = "https:/gym-austral-back.onrender.com/";
 const localUrl = "http://localhost:8000/";
 
 /* module with the most used httpFunction in the app */

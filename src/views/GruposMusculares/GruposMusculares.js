@@ -25,6 +25,7 @@ const GruposMusculares = () => {
   useEffect(() => {
     httpGet("api/muscle_groups/").then((res) => {
       setMuscleGroups(res.data);
+      console.log(muscleGroups);
     });
   }, []);
 
@@ -112,6 +113,7 @@ const GruposMusculares = () => {
                 <thead>
                   <tr>
                     <th scope="col">Nombre</th>
+                    <th scope="col">ID</th>
                     <th scope="col">#</th>
                     <th scope="col">#</th>
                   </tr>
@@ -119,11 +121,12 @@ const GruposMusculares = () => {
                 <tbody>
                   {muscleGroups.map((muscleGroup) => (
                     <tr>
+                      {console.log(muscleGroup)}
                       <td>
-                        <input
-                          defaultValue={muscleGroup.name}
-                          onChange={(e) => setMGroup(e.target.value)}
-                        ></input>
+                        <span>{muscleGroup.name}</span>
+                      </td>
+                      <td>
+                      <span>{muscleGroup.id}</span>
                       </td>
                       <td>
                         <Button
