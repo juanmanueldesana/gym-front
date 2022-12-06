@@ -10,18 +10,17 @@ import {
 import Button from "react-bootstrap/esm/Button";
 import { useNavigate } from "react-router-dom";
 import "./Ejercicios.css";
-import { Col, Modal, Row } from "react-bootstrap";
+import { Col, Form, Modal, Row } from "react-bootstrap";
 
 const GruposMusculares = () => {
   const navigate = useNavigate();
   const [exercises, setExcercise] = useState([]);
-  const [mGroup, setMGroup] = useState({});
   const [exc, setExc] = useState({});
   const [show, setShow] = useState(false);
   const [showDesc, setShowDesc] = useState(false);
   const [showPut, setShowPut] = useState(false);
   const [putExercise, setPutExercise] = useState({});
-  const [addMGroup, setAddMGroup] = useState({});
+  const [muscularGroups, setMuscularGroups] = useState([]);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -33,7 +32,10 @@ const GruposMusculares = () => {
   useEffect(() => {
     httpGet("api/exercise/").then((res) => {
       setExcercise(res.data);
-      console.log(exercises);
+
+      httpGet("api/muscle_groups/").then((res) => {
+        setMuscularGroups(res.data);
+      });
     });
   }, []);
 
@@ -55,10 +57,10 @@ const GruposMusculares = () => {
     <div>
       {profile.is_staff ? (
             <div>
-            <h1 className="h1-profile">Grupos Musculares</h1>
+            <h1 className="h1-profile">Ejercicios</h1>
             <h1 className="h1-profile">
-              <a style={{ textDecoration: "none", color: "black" }} href="/rutina">
-                Volver a rutina
+              <a style={{ textDecoration: "none", color: "black" }} href="/profile">
+                Volver a perfil
               </a>
             </h1>
             <h1 className="h1-profile">
@@ -92,22 +94,27 @@ const GruposMusculares = () => {
                         setExc({ ...exc, name: e.target.value, description: exc.description, muscle_group: exc.muscle_group });
                       }}
                     />
-                    <input
-                      type="text"
-                      className="form-control"
+                    <Form.Control
+                      as="textarea"
                       placeholder="Descripcion"
+                      rows={10}
                       onChange={(e) => {
                         setExc({ ...exc, name: exc.name, description: e.target.value, muscle_group: exc.muscle_group });
                       }}
                     />
-                    <input
-                      type="number"
+                    <select
                       className="form-control"
-                      placeholder="Grupo musuclar(id)"
                       onChange={(e) => {
                         setExc({ ...exc, name: exc.name, description: exc.description, muscle_group: e.target.value });
                       }}
-                    />
+                    >
+                      <option selected disabled value="0">Seleccione un grupo muscular</option>
+                      {muscularGroups.map((muscularGroup) => (
+                        <option value={muscularGroup.id}>
+                          {muscularGroup.name}
+                        </option>
+                      ))}
+                    </select>
                   </div>
                 </form>
               </Modal.Body>
