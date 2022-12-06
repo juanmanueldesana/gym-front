@@ -34,12 +34,7 @@ const Profile = () => {
       </h1>
       <h1 className="h1-profile">
         <a style={{ textDecoration: "none", color: "black" }} href="/rutina">
-          Rutina
-        </a>
-      </h1>
-      <h1 className="h1-profile">
-        <a style={{ textDecoration: "none", color: "black" }} href="/ejercicios">
-          Ejercicios
+          Panel de Administrador
         </a>
       </h1>
       {profile.is_staff == true ? (
