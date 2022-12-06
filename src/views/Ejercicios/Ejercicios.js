@@ -11,6 +11,7 @@ import Button from "react-bootstrap/esm/Button";
 import { useNavigate } from "react-router-dom";
 import "./Ejercicios.css";
 import { Col, Form, Modal, Row } from "react-bootstrap";
+import { toast } from "react-toastify";
 
 const GruposMusculares = () => {
   const navigate = useNavigate();
@@ -127,8 +128,13 @@ const GruposMusculares = () => {
                   onClick={() => {
                     httpPost(`api/exercise/`, {...exc, muscle_group: parseInt(exc.muscle_group)}).then(
                       (res) => {
-                        alert("Ejercicio agregado");
-                        window.location.reload();
+                        toast.success("Ejercicio agregado con exito", {
+                          position: toast.POSITION.BOTTOM_CENTER,
+                          autoClose: 2000,
+                        });
+                        setInterval(() => {
+                          window.location.reload();
+                        }, 2000);
                       }
                     );
                   }}
@@ -226,8 +232,13 @@ const GruposMusculares = () => {
                                   variant="primary"
                                   onClick={() => {
                                     httpPut(`api/exercise/${exercise.id}/`, putExercise).then((res) => {
-                                      alert("Ejercicio actualizado");
-                                      window.location.reload();
+                                      toast.success("Ejercicio editado con exito", {
+                                        position: toast.POSITION.BOTTOM_CENTER,
+                                        autoClose: 2000,
+                                      });
+                                      setInterval(() => {
+                                        window.location.reload();
+                                      }, 2000);
                                     });
                                   }}
                                 >
@@ -247,8 +258,13 @@ const GruposMusculares = () => {
                           onClick={() => {
                             httpDelete(`api/exercise/${exercise.id}/`).then(
                               (res) => {
-                                alert("Ejercicio eliminado");
-                                window.location.reload();
+                                toast.success("Ejercicio eliminado con exito", {
+                                  position: toast.POSITION.BOTTOM_CENTER,
+                                  autoClose: 2000,
+                                });
+                                setInterval(() => {
+                                  window.location.reload();
+                                }, 2000);
                               }
                             );
                           }}

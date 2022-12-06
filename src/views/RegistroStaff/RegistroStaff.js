@@ -4,6 +4,7 @@ import { useNavigate, Link } from "react-router-dom";
 import validateInfo from './validateInfo';
 import { httpPost } from '../../components/utils/httpFunctions';
 import axios from 'axios';
+import { toast } from 'react-toastify';
 
 const RegistroStaff = () => {
     const [profile, setProfile] = useState({
@@ -34,11 +35,20 @@ const RegistroStaff = () => {
                 },
               }
               ).then(() => {
-                alert("Personal de staff creado con exito");
+                toast.success("Staff creado con éxito", {
+                  position: toast.POSITION.BOTTOM_CENTER,
+                  autoClose: 2000,
+                })
+                setInterval(() => {
+                  window.location.reload();
+                }, 2000)
                 navigate("/profile");
               })
               .catch((error) => {
-                alert("No se pudo crear el personal de staff, compruebe que los datos ingresados sean correctos.");
+                toast.error("Error al crear staff", {
+                  position: toast.POSITION.BOTTOM_CENTER,
+                  autoClose: 2000,
+                })
                 console.log(error);
               }
               );

@@ -11,6 +11,7 @@ import Button from "react-bootstrap/esm/Button";
 import { useNavigate } from "react-router-dom";
 import "./GruposMusculares.css";
 import { Col, Modal, Row } from "react-bootstrap";
+import { toast } from "react-toastify";
 
 const GruposMusculares = () => {
   const navigate = useNavigate();
@@ -96,8 +97,13 @@ const GruposMusculares = () => {
                   onClick={() => {
                     httpPost(`api/muscle_groups/`, { name: addMGroup.name }).then(
                       (res) => {
-                        alert("Grupo muscular agregado");
-                        window.location.reload();
+                        toast.success("Grupo muscular agregado con exito", {
+                          position: toast.POSITION.BOTTOM_CENTER,
+                          autoClose: 2000,
+                        });
+                        setInterval(() => {
+                          window.location.reload();
+                        }, 2000);
                       }
                     );
                   }}
@@ -139,8 +145,13 @@ const GruposMusculares = () => {
                             httpPut(`api/muscle_groups/${muscleGroup.id}/`, {
                               name: mGroup,
                             }).then((res) => {
-                              alert("Grupo muscular actualizado");
-                              window.location.reload();
+                              toast.success("Grupo muscular editado con exito", {
+                                position: toast.POSITION.BOTTOM_CENTER,
+                                autoClose: 2000,
+                              });
+                              setInterval(() => {
+                                window.location.reload();
+                              }, 2000);
                             });
                           }}
                         >
@@ -157,8 +168,13 @@ const GruposMusculares = () => {
                           onClick={() => {
                             httpDelete(`api/muscle_groups/${muscleGroup.id}/`).then(
                               (res) => {
-                                alert("Grupo muscular eliminado");
-                                window.location.reload();
+                                toast.success("Grupo muscular eliminado con exito", {
+                                  position: toast.POSITION.BOTTOM_CENTER,
+                                  autoClose: 2000,
+                                });
+                                setInterval(() => {
+                                  window.location.reload();
+                                }, 2000);
                               }
                             );
                           }}

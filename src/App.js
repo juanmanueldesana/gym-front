@@ -21,6 +21,8 @@ import RegistroStaff from "./views/RegistroStaff/RegistroStaff";
 import GruposMusculares from "./views/GruposMusculares/GruposMusculares";
 import Ejercicios from "./views/Ejercicios/Ejercicios";
 import CreacionRutina from "./views/CreacionRutina/CreacionRutina"
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function AppWrapper() {
   return (
@@ -29,6 +31,7 @@ function AppWrapper() {
         <NavBar1/>
       </div>
       <Container>
+        <ToastContainer />
         <Routes>
           <Route path="/" element={<Navigate to="/home" />} />
           <Route path="/home" element={<Landing />} />
