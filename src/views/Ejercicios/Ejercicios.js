@@ -22,6 +22,9 @@ const GruposMusculares = () => {
   const [showPut, setShowPut] = useState(false);
   const [putExercise, setPutExercise] = useState({});
   const [muscularGroups, setMuscularGroups] = useState([]);
+  const [name, setName] = useState("");
+  const [description, setDescription] = useState("");
+  const [muscularGroup, setMuscularGroup] = useState("");
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -160,20 +163,25 @@ const GruposMusculares = () => {
                       <td>
                         <input
                           defaultValue={exercise.name}
-                          onChange={(e) => setExc(e.target.value)}
+                          onChange={(e) => {
+                            setName(e.target.value);
+                            setDescription(exercise.description);
+                            setMuscularGroup(exercise.muscle_group)
+                          }}
                         ></input>
                       </td>
                       <td>
-                        <Button
-                          style={{
-                            padding: "2px",
-                            marginTop: "2px",
-                            backgroundColor: "#FF5300",
+                        <Form.Control
+                          defaultValue={exercise.description}
+                          onChange={(e) => {
+                            setDescription(e.target.value);
+                            setName(exercise.name);
+                            setMuscularGroup(exercise.muscle_group)
                           }}
-                          onClick={handleShowDesc}
+                          as="textarea"
                         >
-                          Descripcion
-                        </Button>
+                          
+                        </Form.Control>
                           <Modal show={showDesc} onHide={handleCloseDesc}>
                               <Modal.Header closeButton>
                                 <Modal.Title>Descripcion</Modal.Title>
@@ -195,57 +203,26 @@ const GruposMusculares = () => {
                             marginTop: "2px",
                             backgroundColor: "#FF5300",
                           }}
-                          onClick={handleShowPut}
+                          onClick={() => {
+                            httpPut(`api/exercise/${exercise.id}/`, {
+                              name: name,
+                              description: description,
+                              muscle_group: muscularGroup,
+                            }).then(
+                              (res) => {
+                                toast.success("Ejercicio actualizado con exito", {
+                                  position: toast.POSITION.BOTTOM_CENTER,
+                                  autoClose: 2000,
+                                });
+                                setInterval(() => {
+                                  window.location.reload();
+                                }, 2000);
+                              }
+                            );
+                          }
+                          }
                         >
                           Editar
-                            <Modal show={showPut} onHide={handleClosePut}>
-                              <Modal.Header closeButton>
-                                <Modal.Title>Editar ejercicio</Modal.Title>
-                              </Modal.Header>
-                              <Modal.Body>
-                                <form>
-                                  <div className="form-group">
-                                    <input
-                                      type="text"
-                                      className="form-control"
-                                      placeholder={exercise.name}
-                                      onChange={(e) => {
-                                        setPutExercise({ ...putExercise, name: e.target.value, description: putExercise.description, muscle_group:exercise.muscle_group});
-                                      }}
-                                    />
-                                    <input
-                                      type="text"
-                                      className="form-control"
-                                      placeholder={exercise.description}
-                                      onChange={(e) => {
-                                        setPutExercise({ ...putExercise, name: putExercise.name, description: e.target.value, muscle_group:exercise.muscle_group});
-                                      }}
-                                    />
-                                  </div>
-                                </form>
-                              </Modal.Body>
-                              <Modal.Footer>
-                                <Button variant="secondary" onClick={handleClosePut}>
-                                  Cerrar
-                                </Button>
-                                <Button
-                                  variant="primary"
-                                  onClick={() => {
-                                    httpPut(`api/exercise/${exercise.id}/`, putExercise).then((res) => {
-                                      toast.success("Ejercicio editado con exito", {
-                                        position: toast.POSITION.BOTTOM_CENTER,
-                                        autoClose: 2000,
-                                      });
-                                      setInterval(() => {
-                                        window.location.reload();
-                                      }, 2000);
-                                    });
-                                  }}
-                                >
-                                  Agregar
-                                </Button>
-                              </Modal.Footer>
-                            </Modal>
                         </Button>
                       </td>
                       <td>
