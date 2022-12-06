@@ -51,7 +51,7 @@ const GruposMusculares = () => {
             <h1 className="h1-profile">Grupos Musculares</h1>
             <h1 className="h1-profile">
               <a style={{ textDecoration: "none", color: "black" }} href="/rutina">
-                Volver a rutina
+                Volver a Panel de Administrador
               </a>
             </h1>
             <h1 className="h1-profile">

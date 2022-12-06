@@ -25,7 +25,7 @@ const Rutina = () => {
 
   return (
     <div>
-      <h1 className="h1-profile">Rutina</h1>
+      <h1 className="h1-profile">Panel de Administrador</h1>
       <h1 className="h1-profile">
         <a style={{ textDecoration: "none", color: "black" }} href="/profile">
           Volver a perfil
