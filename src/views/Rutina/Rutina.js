@@ -11,11 +11,7 @@ const Rutina = () => {
   const navigate = useNavigate();
   const [profile, setProfile] = useState({});
   useEffect(() => {
-    httpGet("https://gym-austral-back.onrender.com/api/auth/me/", {
-      headers: {
-        Authorization: "Bearer " + localStorage.getItem("token"),
-      },
-    }).then((res) => {
+    httpGet("api/auth/me/").then((res) => {
       setProfile(res.data);
       console.log(res.data);
     });
