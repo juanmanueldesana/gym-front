@@ -23,6 +23,8 @@ import Ejercicios from "./views/Ejercicios/Ejercicios";
 import CreacionRutina from "./views/CreacionRutina/CreacionRutina"
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Comunidad from "./views/Comunidad/Comunidad";
+import Staff from "./views/Staff/Staff";
 
 function AppWrapper() {
   return (
@@ -38,6 +40,8 @@ function AppWrapper() {
           <Route path="/signup" element={<SignUp />} />
           <Route path="/signin" element={<SignIn />} />
           <Route path="/clases" element={<Clases />} />
+          <Route path="/comunidad" element={<Comunidad />} />
+          <Route path="/staff" element={<Staff />} />
           <Route element={<ProtectedRoutes />}>
               <Route path="/profile/" element={<Profile />} />
               <Route path="/rutina/" element={<Rutina />} />
