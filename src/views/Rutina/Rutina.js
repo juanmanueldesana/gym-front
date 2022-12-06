@@ -90,7 +90,9 @@ const Rutina = () => {
           </div>
         </form>
       ) : (
-        <div></div>
+        <div>
+         <h1>No tienes acceso a este sitio</h1>
+        </div>
       )}
     </div>
   );

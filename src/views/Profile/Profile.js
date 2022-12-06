@@ -10,15 +10,17 @@ const Profile = () => {
   const navigate = useNavigate();
   const [profile, setProfile] = useState({});
   useEffect(() => {
-    axios.get("https://gym-austral-back.onrender.com/api/auth/me/", {
-      headers: {
-        Authorization: "Bearer " + localStorage.getItem("token"),
-      },
-    }).then((res) => {
-      setProfile(res.data);
-      console.log(res.data);
-      console.log(profile);
-    });
+    axios
+      .get("https://gym-austral-back.onrender.com/api/auth/me/", {
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+      })
+      .then((res) => {
+        setProfile(res.data);
+        console.log(res.data);
+        console.log(profile);
+      });
   }, []);
 
   const logOut = () => {
@@ -29,23 +31,26 @@ const Profile = () => {
 
   return (
     <div>
-      <h1 className="h1-profile">
-          Perfil
-      </h1>
-      <h1 className="h1-profile">
-        <a style={{ textDecoration: "none", color: "black" }} href="/rutina">
-          Panel de Administrador
-        </a>
-      </h1>
+      <h1 className="h1-profile">Perfil</h1>
       {profile.is_staff == true ? (
-        <h1 className="h1-profile">
-          <a
-            style={{ textDecoration: "none", color: "black" }}
-            href="/registro-staff"
-          >
-            Registrar personal de staff
-          </a>
-        </h1>
+        <div>
+          <h1 className="h1-profile">
+            <a
+              style={{ textDecoration: "none", color: "black" }}
+              href="/rutina"
+            >
+              Panel de Administrador
+            </a>
+          </h1>
+          <h1 className="h1-profile">
+            <a
+              style={{ textDecoration: "none", color: "black" }}
+              href="/registro-staff"
+            >
+              Registrar personal de staff
+            </a>
+          </h1>
+        </div>
       ) : null}
       <h1 className="h1-profile">
         <a
