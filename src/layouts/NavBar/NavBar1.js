@@ -29,7 +29,7 @@ const NavBar1 = () => {
                     </li>
                     <li>
                         <a className='nav-links' href='/Clases'>
-                            CLASES
+                            RUTINAS
                         </a>
                     </li>
                     <li>

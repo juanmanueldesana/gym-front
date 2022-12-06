@@ -11,6 +11,7 @@ import Button from "react-bootstrap/esm/Button";
 import { useNavigate } from "react-router-dom";
 import "./DiaRutina.css";
 import { Col, Form, ListGroupItem, Modal, Row } from "react-bootstrap";
+import { toast } from "react-toastify";
 
 const DiaRutina = (props) => {
     const navigate = useNavigate();
@@ -131,7 +132,10 @@ const DiaRutina = (props) => {
                     onClick={() => {
                         httpPost(`api/routine_day_exercise/`, {...newExercise, reps: parseInt(newExercise.reps),sets: parseInt(newExercise.sets),routine_day: parseInt(newExercise.routine_day),exercise: parseInt(newExercise.exercise)}).then(
                           (res) => {
-                            console.log(res.data);
+                            toast.success("Ejercicio agregado con exito", {
+                              position: toast.POSITION.BOTTOM_CENTER,
+                              autoClose: 2000,
+                            });
                           }).then((res)=>{
                             httpGet("api/routine_day_exercise/").then((res) => {
                               setExerciseList(res.data);

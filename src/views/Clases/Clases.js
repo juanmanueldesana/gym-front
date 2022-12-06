@@ -1,18 +1,23 @@
 import React, { useState, useEffect } from 'react'
-const axios = require("axios");
+import { httpGet } from "../../components/utils/httpFunctions";
 
 const Clases = () => {
 
-    const[info,setInfo]=useState({})
+    const [user, setUser] = useState({});
 
-    useEffect( axios.get('https:/gym-austral-back.onrender.com/api/routine_day/').then(response => {
-        setInfo(response.data)}
-       , console.log(info))
-        ,[])
-   
-   
+    useEffect(()=>{
+      httpGet("api/auth/me/").then((res) => {
+        setUser(res.data);
+        
+        httpGet("api/routines/?user="+res.data.id).then((res) => {
+          console.log(res.data);
+        });
+      });
+    },[]);
+
+
   return (
-    <div>Clases</div>
+    <div>Rutinas</div>
   )
 }
 

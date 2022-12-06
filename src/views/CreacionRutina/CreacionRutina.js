@@ -13,6 +13,7 @@ import { useNavigate } from "react-router-dom";
 import "./CreacionRutina.css";
 import { Col, ListGroupItem, Modal, Row } from "react-bootstrap";
 import { act } from "react-dom/test-utils";
+import { toast } from "react-toastify";
 
 const CreacionRutina = () => {
   const navigate = useNavigate();
@@ -169,9 +170,13 @@ const CreacionRutina = () => {
                     }).then((res)=>{
                         httpPost(`api/routine_day/`, {number_day:5 , routine: parseInt(routineID.data.id)}).then(
                             (res) => {
-                              console.log(res);
-                              alert("Rutina creada");
-                              window.location.reload();
+                              toast.success("Rutina creada con exito",{
+                                position: toast.POSITION.BOTTOM_CENTER,
+                                autoClose: 2000,
+                              });
+                              setInterval(() => {
+                                window.location.reload();
+                              }, 2000);
                             }
                           )
                     })
