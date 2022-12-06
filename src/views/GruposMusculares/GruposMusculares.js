@@ -129,7 +129,12 @@ const GruposMusculares = () => {
                     <tr>
                       {console.log(muscleGroup)}
                       <td>
-                        <span>{muscleGroup.name}</span>
+                        <input
+                          defaultValue={muscleGroup.name}
+                          onChange={(e) => {
+                            setMGroup(e.target.value);
+                          }}
+                        />
                       </td>
                       <td>
                       <span>{muscleGroup.id}</span>
