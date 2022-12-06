@@ -8,17 +8,22 @@ import {
   httpPut,
 } from "../../components/utils/httpFunctions";
 import Button from "react-bootstrap/esm/Button";
+import DiaRutina from "../DiaRutina/DiaRutina";
 import { useNavigate } from "react-router-dom";
 import "./CreacionRutina.css";
 import { Col, ListGroupItem, Modal, Row } from "react-bootstrap";
+import { act } from "react-dom/test-utils";
 
 const CreacionRutina = () => {
   const navigate = useNavigate();
 
   let routineID;
+  const [active, setActive] = useState("");
   const [showRoutineExcercise, setShowRoutineExcercise] = useState(false);
+  const [routineData, setRoutineData] = useState({});
   const [routineList, setRoutineList] = useState([]);
   const [routine, setRoutine] = useState([]);
+  const [routineDay, setRoutineDay] = useState([]);
   const [users, setUsers] = useState([]);
   const [showUsers, setShowUsers] = useState(false);
   const [exercises, setExcercise] = useState([]);
@@ -52,8 +57,12 @@ const CreacionRutina = () => {
     });
     httpGet("api/auth/users/").then((res) => {
         setUsers(res.data);
-        console.log(exercises);
+        console.log(users);
       });
+    httpGet("api/routine_day/").then((res)=>{
+        setRoutineDay(res.data);
+        console.log(routineDay);
+    })
   }, []);
 
   const [profile, setProfile] = useState({});
@@ -62,7 +71,12 @@ const CreacionRutina = () => {
       setProfile(res.data);
       console.log(res.data);
     });
-  }, []);
+  }, [exercises,routine,users]);
+  
+  
+  const getRoutineDayID = (routineID)=>{
+    return routineDay.find(x=>x.routine==routineID).id;
+  }
 
   const logOut = () => {
     localStorage.clear();
@@ -91,7 +105,16 @@ const CreacionRutina = () => {
             </h1>
       
             <br></br>
-      
+
+            {active ==="one" && <DiaRutina data={routineData}/>}
+            {active ==="two" && <DiaRutina data={routineData}/>}
+            {active ==="three" && <DiaRutina data={routineData}/>}
+            {active ==="four" && <DiaRutina data={routineData}/>}
+            {active ==="five" && <DiaRutina data={routineData}/>}
+
+
+
+
             <Button className="h1-profile" variant="primary" onClick={handleShow}>
               Agregar Rutina
             </Button>
@@ -196,7 +219,6 @@ const CreacionRutina = () => {
                 </tbody>
                 </table>
             </Modal>
-      
             <form className="container-profile">
               {/* import table to fill with the muscle groups */}
               <table className="table table-striped">
@@ -226,7 +248,8 @@ const CreacionRutina = () => {
                       </td>
                       <td>
                         <Button 
-                        onClick={handleShowRoutineExcercise}
+                        onClick={()=>{setRoutineData({...routineData, mostrar:true, dia:1, IDRutina:routineItem.id, IDUsuario:routineItem.user });
+                        setActive("one")}}
                         style={{
                             padding: "2px",
                             marginTop: "2px",
@@ -235,7 +258,8 @@ const CreacionRutina = () => {
                       </td>
                       <td>
                         <Button 
-                        onClick={handleShowRoutineExcercise}
+                        onClick={()=>{setRoutineData({...routineData, mostrar:true, dia:2, IDRutina:routineItem.id, IDUsuario:routineItem.user });
+                        setActive("two")}}
                         style={{
                             padding: "2px",
                             marginTop: "2px",
@@ -244,7 +268,8 @@ const CreacionRutina = () => {
                       </td>
                       <td>
                         <Button 
-                        onClick={handleShowRoutineExcercise}
+                        onClick={()=>{setRoutineData({...routineData, mostrar:true, dia:3, IDRutina:routineItem.id, IDUsuario:routineItem.user });
+                        setActive("three")}}
                         style={{
                             padding: "2px",
                             marginTop: "2px",
@@ -253,7 +278,8 @@ const CreacionRutina = () => {
                       </td>
                       <td>
                         <Button
-                        onClick={handleShowRoutineExcercise}
+                        onClick={()=>{setRoutineData({...routineData, mostrar:true, dia:4, IDRutina:routineItem.id, IDUsuario:routineItem.user });
+                        setActive("four")}}
                         style={{
                             padding: "2px",
                             marginTop: "2px",
@@ -262,7 +288,8 @@ const CreacionRutina = () => {
                       </td>
                       <td>
                         <Button 
-                        onClick={handleShowRoutineExcercise}
+                        onClick={()=>{setRoutineData({...routineData, mostrar:true, dia:5, IDRutina:routineItem.id, IDUsuario:routineItem.user });
+                        setActive("five")}}
                         style={{
                             padding: "2px",
                             marginTop: "2px",
