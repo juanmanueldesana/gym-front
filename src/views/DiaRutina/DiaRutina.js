@@ -10,7 +10,7 @@ import {
 import Button from "react-bootstrap/esm/Button";
 import { useNavigate } from "react-router-dom";
 import "./DiaRutina.css";
-import { Col, ListGroupItem, Modal, Row } from "react-bootstrap";
+import { Col, Form, ListGroupItem, Modal, Row } from "react-bootstrap";
 
 const DiaRutina = (props) => {
     const navigate = useNavigate();
@@ -23,6 +23,7 @@ const DiaRutina = (props) => {
     const [routineList, setRoutineList] = useState([]);
     const [routine, setRoutine] = useState([]);
     const [users, setUsers] = useState([]);
+    const [exercises, setExercises] = useState([]);
 
     const handleShowRoutineDay = () => setShowRoutineDay(true);
     const handleCloseRoutineDay = () => setShowRoutineDay(false);
@@ -38,6 +39,10 @@ const DiaRutina = (props) => {
             setExerciseList(res.data);
             console.log(exerciseList);
           });
+          httpGet("api/exercise/").then((res) => {
+            setExercises(res.data);
+          }
+          );
         }, []);
     const filtered = exerciseList.filter(exercise => {
           return exercise.routine_day === props.data.IDRutina;
@@ -104,14 +109,17 @@ const DiaRutina = (props) => {
                           setNewExercise({ ...newExercise, reps: newExercise.reps, sets:e.target.value, routine_day:props.data.IDRutina, exercise:newExercise.IDEjercicio});
                         }}
                       />
-                      <input
-                        type="text"
+                      <select
                         className="form-control"
-                        placeholder="ID Ejercicio"
                         onChange={(e) => {
                           setNewExercise({ ...newExercise, reps: newExercise.reps, sets:e.target.value, routine_day:props.data.IDRutina, exercise:e.target.value});
                         }}
-                      />
+                      >
+                        <option selected disabled>Seleccione un ejercicio</option>
+                        {exercises.map((exe) => (
+                          <option value={exe.id}>{exe.name}</option>
+                        ))}
+                      </select>
                     </div>
                   </form>
                 </Modal.Body>
